@@ -52,7 +52,7 @@ export default function drumPads(): JSX.Element {
   return (
     <>
       {pads.map((pad: drumPadParam) => (
-        <DrumPad text={pad.text} id={pad.id} source={pad.source} />
+        <DrumPad text={pad.text} id={pad.id} key={pad.id} source={pad.source} />
       ))}
     </>
   );
