@@ -1,0 +1,83 @@
+:root {
+  --light-yellow: #fdf5df;
+  --teal: #5ebec4;
+  --pink: #f92c85;
+  --border: 3px solid;
+  --radius-md: 10px;
+}
+
+body {
+  background-color: var(--light-yellow);
+  display: flex;
+  justify-content: center;
+}
+
+#root {
+  padding: 15px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.main-title {
+  font-size: 2rem;
+  text-align: center;
+}
+
+#drum-machine {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+
+#display {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+  border: var(--border);
+  border-color: var(--pink);
+  border-radius: var(--radius-md);
+  font-weight: bold;
+}
+
+.drumpads-wrapper {
+  max-width: 500px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.drum-pad {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: var(--border);
+  border-color: var(--teal);
+  border-radius: var(--radius-md);
+  color: var(--pink);
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.active-pad {
+  background-color: var(--teal);
+  border-color: var(--pink);
+  transition: scale 0.5s 0.5s;
+  transform: scale(1.2);
+}

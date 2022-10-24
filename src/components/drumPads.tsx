@@ -55,7 +55,7 @@ type DrumPadProps = {
 
 export default function drumPads({ setClipName }: DrumPadProps): JSX.Element {
   return (
-    <>
+    <section className="drumpads-wrapper">
       {pads.map((pad: PadParam) => (
         <DrumPad
           text={pad.text}
@@ -65,6 +65,6 @@ export default function drumPads({ setClipName }: DrumPadProps): JSX.Element {
           setClipName={setClipName}
         />
       ))}
-    </>
+    </section>
   );
 }

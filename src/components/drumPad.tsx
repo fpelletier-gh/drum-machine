@@ -13,6 +13,7 @@ interface DrumPadParam extends PadParam {
 export default function drumPad(props: DrumPadParam): JSX.Element {
   const { text, id, source, setClipName } = props;
   const audioEl = useRef<HTMLAudioElement>(null);
+  const drumPadEl = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
@@ -20,6 +21,10 @@ export default function drumPad(props: DrumPadParam): JSX.Element {
         if (e.key === audioEl.current.id) {
           audioEl.current.play();
           setClipName(id);
+          drumPadEl.current?.classList.add("active");
+          setTimeout(() => {
+            drumPadEl.current?.classList.remove("active");
+          }, 300);
         }
       }
     });
@@ -30,10 +35,14 @@ export default function drumPad(props: DrumPadParam): JSX.Element {
 
     audioEl.current.play();
     setClipName(id);
+    drumPadEl.current?.classList.add("active");
+    setTimeout(() => {
+      drumPadEl.current?.classList.remove("active");
+    }, 300);
   }
 
   return (
-    <div className="drum-pad" id={id} onClick={handlePadClick}>
+    <div ref={drumPadEl} className="drum-pad" id={id} onClick={handlePadClick}>
       {text}
       <audio ref={audioEl} src={source} className="clip" id={text}></audio>
     </div>
