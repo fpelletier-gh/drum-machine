@@ -1,6 +1,7 @@
-import DrumPad, { drumPadParam } from "./drumPad";
+import { Dispatch } from "react";
+import DrumPad, { PadParam } from "./drumPad";
 
-const pads: Array<drumPadParam> = [
+const pads: Array<PadParam> = [
   {
     text: "Q",
     id: "heater-one",
@@ -48,11 +49,21 @@ const pads: Array<drumPadParam> = [
   },
 ];
 
-export default function drumPads(): JSX.Element {
+type DrumPadProps = {
+  setClipName: Dispatch<React.SetStateAction<string>>;
+};
+
+export default function drumPads({ setClipName }: DrumPadProps): JSX.Element {
   return (
     <>
-      {pads.map((pad: drumPadParam) => (
-        <DrumPad text={pad.text} id={pad.id} key={pad.id} source={pad.source} />
+      {pads.map((pad: PadParam) => (
+        <DrumPad
+          text={pad.text}
+          id={pad.id}
+          key={pad.id}
+          source={pad.source}
+          setClipName={setClipName}
+        />
       ))}
     </>
   );

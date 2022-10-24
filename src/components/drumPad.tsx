@@ -1,13 +1,17 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, Dispatch } from "react";
 
-export interface drumPadParam {
+export interface PadParam {
   text: string;
   id: string;
   source: string;
 }
 
-export default function drumPad(props: drumPadParam): JSX.Element {
-  const { text, id, source } = props;
+interface DrumPadParam extends PadParam {
+  setClipName: Dispatch<React.SetStateAction<string>>;
+}
+
+export default function drumPad(props: DrumPadParam): JSX.Element {
+  const { text, id, source, setClipName } = props;
   const audioEl = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -15,6 +19,7 @@ export default function drumPad(props: drumPadParam): JSX.Element {
       if (audioEl.current) {
         if (e.key === audioEl.current.id) {
           audioEl.current.play();
+          setClipName(id);
         }
       }
     });
@@ -24,6 +29,7 @@ export default function drumPad(props: drumPadParam): JSX.Element {
     if (!audioEl.current) return;
 
     audioEl.current.play();
+    setClipName(id);
   }
 
   return (
