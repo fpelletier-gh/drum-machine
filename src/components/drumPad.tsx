@@ -12,15 +12,16 @@ export default function drumPad(props: drumPadParam): JSX.Element {
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
-      if (!audioEl.current) throw Error("audioEl is not assigned");
-      if (e.key === audioEl.current.id) {
-        audioEl.current.play();
+      if (audioEl.current) {
+        if (e.key === audioEl.current.id) {
+          audioEl.current.play();
+        }
       }
     });
   });
 
   function handlePadClick() {
-    if (!audioEl.current) throw Error("audioEl is not assigned");
+    if (!audioEl.current) return;
 
     audioEl.current.play();
   }
