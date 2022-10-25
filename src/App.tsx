@@ -9,7 +9,7 @@ function App() {
       <h1 className="main-title">Drum Machine</h1>
       <main id="drum-machine">
         <DrumPads setClipName={setClipName} />
-        <section id="display">{clipName}</section>
+        <section id="display">{clipName || "Play Drum!"}</section>
       </main>
     </div>
   );
