@@ -10,13 +10,17 @@ interface DrumPadParam extends PadParam {
   setClipName: Dispatch<React.SetStateAction<string>>;
 }
 
+interface KeyboardEvent {
+  key: string;
+}
+
 export default function drumPad(props: DrumPadParam): JSX.Element {
   const { text, id, source, setClipName } = props;
   const audioEl = useRef<HTMLAudioElement>(null);
   const drumPadEl = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    window.addEventListener("keydown", (e) => {
+    function handleKeyDown(e: KeyboardEvent): void {
       if (audioEl.current) {
         if (e.key === audioEl.current.id) {
           audioEl.current.play();
@@ -27,8 +31,9 @@ export default function drumPad(props: DrumPadParam): JSX.Element {
           }, 300);
         }
       }
-    });
-  });
+    }
+    window.addEventListener("keydown", handleKeyDown);
+  }, []);
 
   function handlePadClick() {
     if (!audioEl.current) return;
